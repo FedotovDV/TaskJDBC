@@ -5,6 +5,7 @@ import jm.task.core.jdbc.util.Util;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
@@ -32,8 +33,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
     private static final String SELECT_ALL_USERS_FROM_TABLE =
             "SELECT * FROM user;";
-
-    private static List<User> users = new ArrayList<>();
 
 
     public UserDaoJDBCImpl() {
@@ -91,17 +90,18 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SELECT_ALL_USERS_FROM_TABLE)) {
             while (resultSet.next()) {
                 users.add(new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getByte(4)));
             }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return users;
+        return Collections.emptyList();
     }
 
 
