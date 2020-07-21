@@ -21,6 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
+        userService.dropUsersTable();
         userService.createUsersTable();
         userService.saveUser("Ivan", "Ivanov", (byte) 33);
         System.out.println("User с именем – Ivan добавлен в базу данных");
@@ -38,6 +39,8 @@ public class Main {
         users = userService.getAllUsers();
         System.out.println(users);
         userService.cleanUsersTable();
+        users = userService.getAllUsers();
+        System.out.println(users);
         userService.dropUsersTable();
 
     }

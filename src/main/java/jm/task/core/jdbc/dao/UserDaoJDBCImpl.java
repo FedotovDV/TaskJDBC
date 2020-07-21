@@ -12,9 +12,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
 
     private static final String DROP_TABLE_QUERY =
-            "DROP TABLE IF EXISTS user;";
+            "DROP TABLE IF EXISTS users;";
     private static final String CREATE_TABLE_QUERY =
-            "CREATE TABLE  user ("
+            "CREATE TABLE  users ("
                     + "`id` bigint NOT NULL AUTO_INCREMENT,"
                     + "`name` varchar(45) DEFAULT NULL,"
                     + "`last_name` varchar(45) DEFAULT NULL,"
@@ -23,16 +23,16 @@ public class UserDaoJDBCImpl implements UserDao {
                     + ") AUTO_INCREMENT = 1 "
                     + "DEFAULT CHARSET = utf8;";
     private static final String CLEAR_TABLE_QUERY =
-            "DELETE FROM user;";
+            "DELETE FROM users;";
 
     private static final String INSERT_USER_IN_TABLE =
-            "INSERT INTO user (name,last_name, age) VALUES(?, ?, ?);";
+            "INSERT INTO users (name,last_name, age) VALUES(?, ?, ?);";
 
     private static final String DELETE_USER_FROM_TABLE =
-            "DELETE FROM user WHERE id = ?;";
+            "DELETE FROM users WHERE id = ?;";
 
     private static final String SELECT_ALL_USERS_FROM_TABLE =
-            "SELECT * FROM user;";
+            "SELECT * FROM users;";
 
 
     public UserDaoJDBCImpl() {
